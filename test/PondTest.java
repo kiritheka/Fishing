@@ -1,5 +1,6 @@
 package test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,6 +18,7 @@ import try4.Pond;
 
 class PondTest {
 	Pond pond = new Pond();
+	
 
 	@Test
 	void testGetPondCapacity() {
@@ -34,12 +36,12 @@ class PondTest {
 		String pondName = "PondSmall";
 		int capacity = 10;
 
-		fishAndsize.put("GoldenFish", 140);
+	/*	fishAndsize.put("GoldenFish", 140);
 		fishAndsize.put("Bass", 420);
 		fishAndsize.put("SunFish", 200);
 		fishAndsize.put("Guppy", 80);
 		fishAndsize.put("Shark", 330);
-		fishAndsize.put("FlowerHorn", 480);
+		fishAndsize.put("FlowerHorn", 480);*/
 		fishAndsize.put("Pike", 750);
 
 		pondWithFishesExpected.put("PondSmall", new ArrayList<>(Arrays.asList("GoldenFish", "Guppy", "Bass","FlowerHorn", "GoldenFish", "Bass", "FlowerHorn", "FlowerHorn", "Guppy", "Guppy")));
@@ -47,7 +49,7 @@ class PondTest {
 		doReturn(pondWithFishesExpected).when(pond).addFishesToPond(pondName, capacity, fishAndsize);
 
 		assertEquals(pondWithFishesExpected, pond.addFishesToPond(pondName, capacity, fishAndsize));
-		assertTrue(pondWithNoFishes.equals(pond.addFishesToPond(pondName, capacity, noFishSpecies)));
+		assertEquals(pondWithNoFishes,(pond.addFishesToPond(pondName, capacity, noFishSpecies)));
 	}
 
 	@Rule

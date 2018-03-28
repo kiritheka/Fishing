@@ -1,5 +1,6 @@
 package test;
 
+
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
@@ -41,25 +42,30 @@ class FishingTest {
 		int requiredNoOfFishes = 4;
 		int exceededrequiredNoOfFishes = 17;
 
-		fisherManBucketExpected = new ArrayList<String>(Arrays.asList("FlowerHorn", "Bass", "GoldenFish", "FlowerHorn"));
+		fisherManBucketExpected = new ArrayList<String>(
+				Arrays.asList("FlowerHorn", "Bass", "GoldenFish", "FlowerHorn"));
 		fisherManEmptyBucket = new ArrayList<String>(Arrays.asList(""));
-		pondWithFishes.put("PondSmall", new ArrayList<>(Arrays.asList("GoldenFish", "Guppy", "Bass", "FlowerHorn","GoldenFish", "Bass", "FlowerHorn", "FlowerHorn", "Guppy", "Guppy")));
+		pondWithFishes.put("PondSmall", new ArrayList<>(Arrays.asList("GoldenFish", "Guppy", "Bass", "FlowerHorn",
+				"GoldenFish", "Bass", "FlowerHorn", "FlowerHorn", "Guppy", "Guppy")));
 
 		Fishing fishing = mock(Fishing.class);
 		doReturn(fisherManBucketExpected).when(fishing).goToFishing(pondName, pondWithFishes, fishAndsize,
 				requiredNoOfFishes, preferedSize);
 
-		assertEquals(fisherManEmptyBucket.toString(), 
-				fishing.goToFishing(pondName, pondWithNoFishes, fishAndsize, requiredNoOfFishes, preferedSize).toString());
+		assertEquals(fisherManEmptyBucket.toString(), fishing
+				.goToFishing(pondName, pondWithNoFishes, fishAndsize, requiredNoOfFishes, preferedSize).toString());
 
-		assertTrue(fisherManEmptyBucket.toString()
-				.equals(fishing.goToFishing(noPond, pondWithFishes, fishAndsize, requiredNoOfFishes, preferedSize).toString()));
+		assertTrue(fisherManEmptyBucket.toString().equals(
+				fishing.goToFishing(noPond, pondWithFishes, fishAndsize, requiredNoOfFishes, preferedSize).toString()));
 
 		assertEquals(fisherManEmptyBucket.toString(),
-				fishing.goToFishing(pondName, pondWithNoFishes, fishAndsize, exceededrequiredNoOfFishes, preferedSize).toString());
+				fishing.goToFishing(pondName, pondWithNoFishes, fishAndsize, exceededrequiredNoOfFishes, preferedSize)
+						.toString());
 
 		assertTrue(fisherManEmptyBucket.toString()
-				.equals(fishing.goToFishing(pondName, pondWithFishes, fishAndsize, requiredNoOfFishes, exceededPreferedSize).toString()));
+				.equals(fishing
+						.goToFishing(pondName, pondWithFishes, fishAndsize, requiredNoOfFishes, exceededPreferedSize)
+						.toString()));
 
 		exception.expect(NullPointerException.class);
 		exception.expectMessage("NO SUCH POND");
