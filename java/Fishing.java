@@ -8,7 +8,9 @@ public class Fishing {
 
 	public ArrayList<String> goToFishing(String pondName, HashMap<String, ArrayList<String>> pondWithFishes,
 			HashMap<String, Integer> fishAndsize, int requiredNoOfFishes, int preferedSize) {
+
 		ArrayList<String> fisherManBucket = new ArrayList<String>();
+		int pondCapacity = pondWithFishes.get(pondName).size();
 
 		try {
 			Random random = new Random();
@@ -28,16 +30,14 @@ public class Fishing {
 				}
 				count++;
 
-				if (count > pondWithFishes.get(pondName).size()) {
+				if (count > pondCapacity) {
 					System.out.println("NO MORE FISHES OF PREFFERED SIZE IN POND" + "\n");
 					break;
 				}
 			}
 		} catch (IllegalArgumentException e) {
 			System.out.println("There is no pond with such a name " + e);
-
 		}
-
 		System.out.println("After Fishing Remaining Fishes in Pond   " + pondWithFishes.get(pondName).size() + "\n");
 		return fisherManBucket;
 	}

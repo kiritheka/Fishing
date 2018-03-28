@@ -24,7 +24,7 @@ public class Pond {
 		return Capacity;
 	}
 
-	public HashMap<String, ArrayList<String>> addingFishesToPond(String PondName, int Capacity,
+	public HashMap<String, ArrayList<String>> addFishesToPond(String PondName, int Capacity,
 			HashMap<String, Integer> fishAndsize) {
 
 		ArrayList<String> randomfishesInPond = new ArrayList<String>();

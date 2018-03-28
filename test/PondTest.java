@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,10 +28,12 @@ class PondTest {
 	@Test
 	void testAddingFishesToPond() {
 		HashMap<String, ArrayList<String>> pondWithFishesExpected = new HashMap<String, ArrayList<String>>();
+		HashMap<String, ArrayList<String>> pondWithNoFishes = new HashMap<String, ArrayList<String>>();
 		HashMap<String, Integer> fishAndsize = new HashMap<String, Integer>();
+		HashMap<String, Integer> noFishSpecies = new HashMap<String, Integer>();
 		String pondName = "PondSmall";
 		int capacity = 10;
-		
+
 		fishAndsize.put("GoldenFish", 140);
 		fishAndsize.put("Bass", 420);
 		fishAndsize.put("SunFish", 200);
@@ -39,11 +42,12 @@ class PondTest {
 		fishAndsize.put("FlowerHorn", 480);
 		fishAndsize.put("Pike", 750);
 
-		pondWithFishesExpected.put("PondSmall", new ArrayList<>(Arrays.asList("GoldenFish", "Guppy", "Bass", "FlowerHorn", "GoldenFish", "Bass", "FlowerHorn", "FlowerHorn", "Guppy", "Guppy")));
+		pondWithFishesExpected.put("PondSmall", new ArrayList<>(Arrays.asList("GoldenFish", "Guppy", "Bass","FlowerHorn", "GoldenFish", "Bass", "FlowerHorn", "FlowerHorn", "Guppy", "Guppy")));
 		Pond pond = mock(Pond.class);
-        doReturn(pondWithFishesExpected).when(pond).addingFishesToPond(pondName, capacity, fishAndsize);
-        
-        assertEquals(pondWithFishesExpected, pond.addingFishesToPond(pondName, capacity, fishAndsize));
+		doReturn(pondWithFishesExpected).when(pond).addFishesToPond(pondName, capacity, fishAndsize);
+
+		assertEquals(pondWithFishesExpected, pond.addFishesToPond(pondName, capacity, fishAndsize));
+		assertTrue(pondWithNoFishes.equals(pond.addFishesToPond(pondName, capacity, noFishSpecies)));
 	}
 
 	@Rule
@@ -57,6 +61,3 @@ class PondTest {
 	}
 
 }
-
-
-
