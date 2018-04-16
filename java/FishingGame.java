@@ -1,4 +1,4 @@
-package try4;
+package try5;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,11 +11,9 @@ public class FishingGame {
 
 	public static void main(String[] args) {
 
-		Fish fish = new Fish();
-		Pond pond = new Pond();
-		Fishing fishing = new Fishing();
-
 		Scanner scan = new Scanner(System.in);
+		PondDetails pondDetails = new PondDetails();
+		FishDetails fishDetails = new FishDetails();
 		int preferedSize = 0;
 		int requiredNoOfFishes = 0;
 		String pondName = "";
@@ -29,15 +27,17 @@ public class FishingGame {
 
 			System.out.println("Enter the Size Prefered by fishermen");
 			preferedSize = scan.nextInt();
+
 		} catch (java.util.InputMismatchException e) {
 			System.out.println("Enter a proper INPUT  " + e);
 		}
 
-		HashMap<String, Integer> fishAndsize = fish.fishSpeciesAvailble();
-		int Capacity = pond.getPondCapacity(pondName);
-		HashMap<String, ArrayList<String>> pondWithFishes = pond.addFishesToPond(pondName, Capacity, fishAndsize);
-		if ((requiredNoOfFishes <= Capacity)) {
-			ArrayList<String> fishBucket = fishing.goToFishing(pondName, pondWithFishes, fishAndsize,
+		int position = pondDetails.getAvailablePonds().indexOf(pondName);
+		int pondSize = pondDetails.getAvailablePonds().get(position).pondSize;
+	    HashMap<String, ArrayList<Fish>> pondWithFishes = pondDetails.addFishesToPond(pondName, pondSize, fishDetails);
+		
+	    if ((requiredNoOfFishes <= pondSize)) {
+			ArrayList<String> fishBucket = pondDetails.goToFishing(pondName, pondWithFishes, fishDetails,
 					requiredNoOfFishes, preferedSize);
 			System.out.println(("FisherMen Bucket After Fishing " + fishBucket));
 
